@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // assumes same db module used elsewhere
+const db = require('../db'); // assumes the repo has a db module exporting query()
 const { authenticateToken, requireRole } = require('../middleware/auth');
 
 // Create an activity
