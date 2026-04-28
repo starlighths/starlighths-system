@@ -1,0 +1,10 @@
+---
+title: "Portal UI"
+description: "Lightweight Jekyll frontend for the Portal backend"
+baseurl: "/portal"        # change to "" for user site or if using custom domain
+url: "https://starlighths.github.io"  # change for custom domain
+api_base: "https://api.starlighths.io"   # REPLACED with provided backend base URL
+markdown: kramdown
+theme: minima
+plugins: []
+---
