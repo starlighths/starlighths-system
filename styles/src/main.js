@@ -29,32 +29,56 @@ function renderLogin() {
 
 function renderDashboard() {
     const u = state.user;
-    document.getElementById('root').innerHTML = `
+    const root = document.getElementById('root');
+
+    root.innerHTML = `
         <div class="dashboard-layout">
             <aside class="sidebar">
-                <h2>Starlight High</h2>
-                <hr style="opacity:0.2">
-                <p>📅 Week 1 (Active)</p>
-                <nav style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
-                    <a href="#" style="color:white; text-decoration:none;">Dashboard</a>
-                    <a href="#" style="color:white; text-decoration:none;">Timetable</a>
-                    <a href="#" style="color:white; text-decoration:none;">ECA Applications</a>
+                <h2>🌟 STARLIGHT</h2>
+                <nav>
+                    <button onclick="showView('home')">🏠 Home</button>
+                    
+                    ${u.role === 'ADMIN' ? '<button onclick="showView(\'admin\')">🛡️ Admin Panel</button>' : ''}
+                    ${u.role === 'TEACHER' ? '<button onclick="showView(\'teacher\')">📋 Class Sync</button>' : ''}
+                    ${u.role === 'STUDENT' ? '<button onclick="showView(\'student\')">📚 My ECA</button>' : ''}
+                    
+                    <button onclick="location.reload()">🚪 Logout</button>
                 </nav>
             </aside>
             <main class="main-view">
-                <header>
+                <div id="content-area">
                     <h1>Welcome, ${u.fullName}</h1>
-                    <p>${u.role} | Class ${u.classId}</p>
-                </header>
-                <div class="grid-stats">
-                    <div class="widget"><h4>On-Time Rate</h4><h2>${u.onTimeRate}%</h2></div>
-                    <div class="widget"><h4>English (Unified)</h4><h2>A-</h2></div>
-                    <div class="widget"><h4>Next Class</h4><p>13:00 - Makeup & Beauty</p></div>
+                    <p>Current Role: <strong>${u.role}</strong></p>
+                    <div class="grid-stats">
+                        ${renderRoleWidgets(u)}
+                    </div>
                 </div>
             </main>
         </div>
     `;
 }
+function renderRoleWidgets(user) {
+    if (user.role === 'ADMIN') {
+        return `
+            <div class="widget"><h4>Total Students</h4><h2>450</h2></div>
+            <div class="widget"><h4>Teacher Sync Status</h4><h2>92%</h2></div>
+            <div class="widget"><h4>System Alerts</h4><p>Timetable 2B conflict</p></div>
+        `;
+    } else if (user.role === 'TEACHER') {
+        return `
+            <div class="widget"><h4>My S-Class</h4><h2>1A</h2></div>
+            <div class="widget"><h4>Next Sync</h4><p>15:45 with Partner</p></div>
+            <div class="widget"><h4>Pending Grades</h4><h2>14</h2></div>
+        `;
+    } else {
+        return `
+            <div class="widget"><h4>On-Time Rate</h4><h2>${user.onTimeRate}%</h2></div>
+            <div class="widget"><h4>English (Unified)</h4><h2>A-</h2></div>
+            <div class="widget"><h4>Attendance</h4><p>Perfect Week!</p></div>
+        `;
+    }
+}
+
 
 window.handleLogin = function(selectedRole) {
     state.isLoggedIn = true;
