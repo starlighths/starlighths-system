@@ -1,1 +1,68 @@
+:root {
+    --primary: #1a237e;    /* Deep Navy */
+    --secondary: #3949ab;  /* Bright Indigo */
+    --accent: #ffd700;     /* Starlight Gold */
+    --bg: #f4f7fe;
+    --text: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* Glassmorphism Login Card */
+.auth-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary) 0%, #000051 100%);
+}
+
+.login-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Dashboard Layout */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100vh;
+}
+
+.sidebar {
+    background: var(--primary);
+    color: white;
+    padding: 2rem;
+}
+
+.main-view {
+    padding: 3rem;
+    overflow-y: auto;
+}
+
+/* Dashboard Widgets */
+.grid-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.widget {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--secondary);
+}
 
