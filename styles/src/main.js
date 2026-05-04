@@ -56,12 +56,16 @@ function renderDashboard() {
     `;
 }
 
-// Mock Login Function for Testing
-window.handleLogin = () => {
+window.handleLogin = function() {
     state.isLoggedIn = true;
-    state.user = { fullName: "Lee Hana", role: "STUDENT", classId: "1A", onTimeRate: 98 };
-    initApp();
+    state.user = { 
+        fullName: "Admin User", 
+        role: "ADMIN", // Change this from "STUDENT" to "ADMIN"
+        classId: "STAFF" 
+    };
+    initApp(); 
 };
+
 
 window.onload = initApp;
 
