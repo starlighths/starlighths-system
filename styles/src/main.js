@@ -56,15 +56,21 @@ function renderDashboard() {
     `;
 }
 
-window.handleLogin = function() {
+window.handleLogin = function(selectedRole) {
     state.isLoggedIn = true;
-    state.user = { 
-        fullName: "Admin User", 
-        role: "ADMIN", // Change this from "STUDENT" to "ADMIN"
-        classId: "STAFF" 
+    
+    
+    state.user = {
+        fullName: selectedRole === 'ADMIN' ? "Director Chen" : (selectedRole === 'TEACHER' ? "Mx. Smith" : "Lee Hana"),
+        role: selectedRole, // ADMIN, TEACHER, or STUDENT
+        classId: selectedRole === 'STUDENT' ? "1A" : "Staff Room",
+        onTimeRate: 98
     };
+
+    console.log("Logged in as:", state.user.role);
     initApp(); 
 };
+
 
 
 window.onload = initApp;
